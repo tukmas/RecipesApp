@@ -8,11 +8,11 @@
         <version>2.7.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>me.Vova</groupId>
-    <artifactId>MavenWork1</artifactId>
+    <groupId>ru.live</groupId>
+    <artifactId>RecipesApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MavenWork1</name>
-    <description>MavenWork1</description>
+    <name>RecipesApp</name>
+    <description>RecipesApp</description>
     <properties>
         <java.version>17</java.version>
     </properties>
