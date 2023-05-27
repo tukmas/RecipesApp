@@ -4,13 +4,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ru.live.recipesapp.exception.ValidationException;
 import ru.live.recipesapp.model.Ingredient;
-import ru.live.recipesapp.service.impl.FileService;
 import ru.live.recipesapp.services.IngredientService;
 import ru.live.recipesapp.services.ValidationService;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,8 +64,9 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient delete(Long id) {
+        Ingredient removed = ingredients.remove(id);
         fileService.saveMapToFile(ingredients, ingredientPath);
-        return ingredients.remove(id);
+        return removed;
     }
 
     @Override
@@ -71,11 +74,22 @@ public class IngredientServiceImpl implements IngredientService {
         return ingredients;
     }
 
+    @Override
+    public File readFile() {
+        return ingredientPath.toFile();
+    }
+
+    @Override
+    public void uploadFile(MultipartFile file) throws IOException {
+        fileService.uploadFile(file, ingredientPath);
+        ingredients = fileService.readMapFromFile(ingredientPath, new TypeReference<Map<Long, Ingredient>>() {
+        });
+    }
+
     @PostConstruct
     private void inti() {
         ingredientPath = Path.of(ingredientsFilePath, ingredientsFileName);
-        ingredients = fileService.readMapFromFile(ingredientPath, new TypeReference<HashMap<Long, Ingredient>>() {
+        ingredients = fileService.readMapFromFile(ingredientPath, new TypeReference<Map<Long, Ingredient>>() {
         });
-
     }
 }
