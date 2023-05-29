@@ -22,4 +22,5 @@ public interface RecipeService {
     File readFile();
 
     void uploadFile(MultipartFile file) throws IOException;
+    File prepareRecipesTxt() throws IOException;
 }

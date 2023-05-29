@@ -8,7 +8,11 @@ import lombok.Data;
 public class Recipe {
     private String name;
     private int cookingTime;
-    protected List<Ingredient> ingredientList;
+    protected List<Ingredient> ingredients;
     private List<String> steps;
+    @Override
+    public String toString() {
+        return name + "\n Время приготовления: " + cookingTime;
+    }
 
 }
