@@ -62,6 +62,11 @@ public class FileService {
         }
     }
 
+    public Path saveToFile(String content, Path path) throws IOException {
+        createNewFile(path);
+        return Files.writeString(path, content);
+    }
+
     private void createNewFile(Path path) throws IOException {
         Files.deleteIfExists(path);
         Files.createFile(path);
