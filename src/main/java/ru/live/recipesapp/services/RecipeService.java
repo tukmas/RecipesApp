@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
+
 public interface RecipeService {
 
     Recipe save(Recipe recipe);
@@ -22,5 +23,6 @@ public interface RecipeService {
     File readFile();
 
     void uploadFile(MultipartFile file) throws IOException;
+
     File prepareRecipesTxt() throws IOException;
 }

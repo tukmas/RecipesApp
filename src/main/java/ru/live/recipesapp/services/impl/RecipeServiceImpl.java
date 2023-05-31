@@ -87,19 +87,21 @@ public class RecipeServiceImpl implements RecipeService {
         recipes = fileService.readMapFromFile(recipesPath, new TypeReference<Map<Long, Recipe>>() {
         });
     }
+
     @Override
     public File prepareRecipesTxt() throws IOException {
         return fileService
                 .saveToFile(recipesToString(), Path.of(recipesFilePath, recipesTxtFileName))
                 .toFile();
     }
+
     @PostConstruct
     private void inti() {
         recipesPath = Path.of(recipesFilePath, recipesFileName);
         recipes = fileService.readMapFromFile(recipesPath, new TypeReference<Map<Long, Recipe>>() {
         });
-
     }
+
     private String recipesToString() {
         StringBuilder sb = new StringBuilder();
         String listEl = " ▻ ";

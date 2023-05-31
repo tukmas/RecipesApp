@@ -13,9 +13,11 @@ import ru.live.recipesapp.services.RecipeService;
 
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/recipe")
 @Tag(name = "API по работе с рецептами", description = "CRUD - операции нал рецептами")
+
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -23,6 +25,7 @@ public class RecipeController {
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
+
     @Operation(
             summary = "Сохранение рецептов"
     )
@@ -50,6 +53,7 @@ public class RecipeController {
     public ResponseEntity<Recipe> save(@RequestBody Recipe recipe) {
         return ResponseEntity.ok(recipeService.save(recipe));
     }
+
     @Operation(
             summary = "Получение рецепта по id"
     )
@@ -70,6 +74,7 @@ public class RecipeController {
     public ResponseEntity<Recipe> getById(@PathVariable Long id) {
         return ResponseEntity.of(recipeService.getById(id));
     }
+
     @Operation(
             summary = "обновление рецепта"
     )
@@ -77,6 +82,7 @@ public class RecipeController {
     public ResponseEntity<Recipe> update(@PathVariable Long id, @RequestBody Recipe recipe) {
         return ResponseEntity.ok(recipeService.update(id, recipe));
     }
+
     @Operation(
             summary = "удаление рецепта"
     )
@@ -84,6 +90,7 @@ public class RecipeController {
     public ResponseEntity<Recipe> delete(@PathVariable Long id) {
         return ResponseEntity.ok(recipeService.delete(id));
     }
+
     @Operation(
             summary = "Получение всех рецептов"
     )
