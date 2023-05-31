@@ -9,6 +9,7 @@ import ru.live.recipesapp.services.IngredientService;
 
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/ingredient")
 @Tag(name = "API по работе с ингридиентами", description = "CRUD - операции для ингридиентов")
@@ -19,6 +20,7 @@ public class IngredientController {
     public IngredientController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }
+
     @Operation(
             summary = "Сохранение ингредиентов"
     )
@@ -26,6 +28,7 @@ public class IngredientController {
     public ResponseEntity<Ingredient> save(@RequestBody Ingredient ingredient) {
         return ResponseEntity.ok(ingredientService.save(ingredient));
     }
+
     @Operation(
             summary = "Получение ингредиента по id"
     )
@@ -33,6 +36,7 @@ public class IngredientController {
     public ResponseEntity<Ingredient> getById(@PathVariable Long id) {
         return ResponseEntity.of(ingredientService.getById(id));
     }
+
     @Operation(
             summary = "Обновление ингредиента"
     )
@@ -40,6 +44,7 @@ public class IngredientController {
     public ResponseEntity<Ingredient> update(@PathVariable Long id, @RequestBody Ingredient ingredient) {
         return ResponseEntity.ok(ingredientService.update(id, ingredient));
     }
+
     @Operation(
             summary = "Удаление ингредиента"
     )
@@ -47,6 +52,7 @@ public class IngredientController {
     public ResponseEntity<Ingredient> delete(@PathVariable Long id) {
         return ResponseEntity.ok(ingredientService.delete(id));
     }
+
     @Operation(
             summary = "Получение всех ингредиентов"
     )
